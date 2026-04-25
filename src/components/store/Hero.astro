@@ -1,74 +1,74 @@
 ---
 ---
 
-<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden -mt-16 sm:-mt-20 text-center">
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden -mt-16 sm:-mt-20"
+  style="background: #FAF7F2;">
 
-  <!-- Deep background -->
-  <div class="absolute inset-0" style="background: #0e0805;"></div>
+  <!-- Very subtle warm gradient center -->
+  <div class="absolute inset-0 pointer-events-none"
+    style="background: radial-gradient(ellipse at 50% 60%, rgba(200,150,62,0.06) 0%, transparent 65%);"></div>
 
-  <!-- Subtle vignette -->
-  <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 40%, rgba(92,46,8,0.35) 0%, transparent 65%);"></div>
+  <!-- Thin decorative top line -->
+  <div class="absolute top-0 left-0 right-0 h-px" style="background: linear-gradient(90deg, transparent, rgba(26,15,0,0.12), transparent);"></div>
 
-  <!-- Noise grain -->
-  <div class="absolute inset-0 opacity-30" style="background-image: url('/images/noise.png');"></div>
-
-  <!-- Very faint center glow -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-10"
-    style="background: radial-gradient(circle, #c8963e 0%, transparent 70%);"></div>
-
-  <!-- Content -->
-  <div class="relative z-10 max-w-4xl mx-auto px-6 py-32 flex flex-col items-center gap-8">
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-40 flex flex-col items-center gap-10">
 
     <!-- Eyebrow -->
-    <p class="text-xs tracking-[0.4em] uppercase font-medium" style="color: #a05415; letter-spacing: 0.35em;">
-      Yemen &nbsp;·&nbsp; Est. 500+ Years
+    <p style="font-size:0.6rem; font-weight:500; letter-spacing:0.45em; text-transform:uppercase; color:#9B7A50;">
+      Yemen &nbsp;·&nbsp; Est. 500+ Years &nbsp;·&nbsp; Single Origin
     </p>
 
-    <!-- Main heading -->
-    <h1 class="leading-none" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(4rem, 12vw, 8.5rem); font-weight: 300; color: #f5e0b0; line-height: 0.95;">
-      Where <em style="font-style: italic; color: #c8963e;">Coffee</em><br />Began.
-    </h1>
+    <!-- Main headline -->
+    <div class="space-y-0">
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(4.5rem,14vw,10rem); font-weight:300; color:#1A0F00; line-height:0.9; letter-spacing:-0.01em;">
+        Where <em style="font-style:italic; color:#8B6914;">Coffee</em>
+      </h1>
+      <h1 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(4.5rem,14vw,10rem); font-weight:300; color:#1A0F00; line-height:0.9; letter-spacing:-0.01em;">
+        Began.
+      </h1>
+    </div>
 
     <!-- Italic subtitle -->
-    <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.2rem, 3vw, 1.7rem); font-style: italic; font-weight: 300; color: rgba(232,196,122,0.7);">
+    <p style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(1.1rem,2.5vw,1.5rem); font-style:italic; font-weight:300; color:#9B7A50; margin-top:0.5rem;">
       The world's rarest single origin.
     </p>
 
-    <!-- Divider -->
-    <div class="w-16 h-px" style="background: linear-gradient(90deg, transparent, #c8963e, transparent);"></div>
+    <!-- Thin divider -->
+    <div style="width:40px; height:1px; background:rgba(139,105,20,0.4);"></div>
 
-    <!-- Body text -->
-    <p class="max-w-xl leading-relaxed" style="font-size: 1rem; font-weight: 300; color: rgba(245,224,176,0.55); line-height: 1.8;">
+    <!-- Body -->
+    <p class="max-w-lg" style="font-size:0.95rem; font-weight:300; color:#5C3D1E; line-height:1.9;">
       Before Ethiopia. Before Colombia. Before Brazil —
-      Yemeni farmers in the ancient highlands of Khawlan were cultivating
-      the very first cup. Now it arrives at your door.
+      Yemeni farmers in the ancient mountains of Khawlan
+      were brewing the very first cup.
+      Now it arrives at your door.
     </p>
 
     <!-- CTAs -->
-    <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+    <div class="flex flex-wrap items-center justify-center gap-4">
       <a href="/products/al-khawlani" class="no-underline"
-        style="display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; background: #c8963e; color: #0a0500; transition: all 0.3s ease;">
+        style="display:inline-flex; align-items:center; padding:1rem 2.8rem; font-size:0.65rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; background:#1A0F00; color:#FAF7F2; transition:all 0.3s ease;">
         Shop Now
       </a>
       <a href="/#story" class="no-underline"
-        style="display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; background: transparent; color: #c8963e; border: 1px solid rgba(200,150,62,0.4); transition: all 0.3s ease;">
+        style="display:inline-flex; align-items:center; padding:1rem 2.8rem; font-size:0.65rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; background:transparent; color:#1A0F00; border:1px solid rgba(26,15,0,0.25); transition:all 0.3s ease;">
         Our Story
       </a>
     </div>
 
     <!-- Stats -->
-    <div class="flex flex-wrap items-center justify-center gap-12 pt-8 mt-4 border-t w-full max-w-lg"
-      style="border-color: rgba(200,150,62,0.1);">
+    <div class="flex flex-wrap items-center justify-center gap-12 pt-10 mt-4 w-full max-w-lg"
+      style="border-top:1px solid rgba(26,15,0,0.08);">
       {[
         { num: '500+', label: 'Years of Heritage' },
         { num: '2,200m', label: 'Altitude Grown' },
         { num: '100%', label: 'Natural Process' },
       ].map((stat) => (
         <div class="text-center">
-          <div style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.8rem; font-weight: 300; color: #c8963e; line-height: 1;">
+          <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:2rem; font-weight:300; color:#1A0F00; line-height:1;">
             {stat.num}
           </div>
-          <div style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(160,84,21,0.8); margin-top: 4px; font-weight: 500;">
+          <div style="font-size:0.55rem; letter-spacing:0.25em; text-transform:uppercase; color:#9B7A50; margin-top:5px; font-weight:500;">
             {stat.label}
           </div>
         </div>
@@ -76,9 +76,9 @@
     </div>
   </div>
 
-  <!-- Scroll hint -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-    <div class="w-px h-10 bg-gradient-to-b from-transparent via-mocha-200 to-transparent opacity-30"></div>
-    <p style="font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(160,84,21,0.5);">Scroll</p>
+  <!-- Scroll -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+    <div style="width:1px; height:40px; background:linear-gradient(to bottom, transparent, rgba(26,15,0,0.2));"></div>
+    <p style="font-size:0.55rem; letter-spacing:0.35em; text-transform:uppercase; color:rgba(26,15,0,0.3);">Scroll</p>
   </div>
 </section>

@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = 'Mocha · Authentic Yemeni Coffee',
-  description = 'Discover the finest single-origin Yemeni coffee. From the highlands of Khawlan to your cup — Mocha delivers an unparalleled coffee experience.',
+  description = 'The world\'s rarest single-origin coffee from the highlands of Khawlan, Yemen.',
 } = Astro.props;
 ---
 
@@ -23,17 +23,13 @@ const {
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-mocha-950 text-cream antialiased">
+  <body style="background:#FAF7F2; color:#1A0F00;">
     <CartWrapper client:load />
     <Navbar />
     <main><slot /></main>

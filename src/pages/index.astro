@@ -13,36 +13,28 @@ const featured = getFeaturedProducts();
 <StoreLayout>
   <Hero />
 
-  <div class="gold-divider my-2"></div>
+  <!-- Thin divider -->
+  <div style="height:1px; background:linear-gradient(90deg,transparent,rgba(26,15,0,0.1),transparent);"></div>
 
-  <!-- Featured Products -->
-  <section class="py-20 relative">
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(44,21,3,0.3) 0%, transparent 60%);"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Collection -->
+  <section class="py-28" style="background:#FAF7F2;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-      <div class="flex items-center justify-between mb-12">
-        <a href="/products" class="btn btn-outline btn-sm no-underline flex items-center gap-2">
-          View All
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-        <div class="text-right">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-bold mb-2"
-            style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
-            ✦ Our Collection
-          </div>
-          <h2 class="text-cream" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.1;">
-            Shop the <em style="font-style: italic; color: #c8963e;">Collection</em>
+      <div class="flex items-end justify-between mb-14">
+        <div>
+          <p style="font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#9B7A50; margin-bottom:0.75rem;">The Collection</p>
+          <h2 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(2rem,4vw,3rem); font-weight:300; color:#1A0F00; line-height:1.1;">
+            Shop the <em style="font-style:italic; color:#8B6914;">Collection</em>
           </h2>
         </div>
+        <a href="/products" class="no-underline hidden sm:inline-flex"
+          style="font-size:0.6rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; color:#9B7A50; border-bottom:1px solid rgba(26,15,0,0.2); padding-bottom:2px; transition:color 0.2s;">
+          View All →
+        </a>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featured.map((product) => (
-          <ProductCard product={product} />
-        ))}
+        {featured.map((p) => <ProductCard product={p} />)}
       </div>
     </div>
   </section>
@@ -50,32 +42,26 @@ const featured = getFeaturedProducts();
   <StorySection />
 
   <!-- Process -->
-  <section class="py-20 relative overflow-hidden">
-    <div class="gold-divider mb-20"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold"
-          style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
-          ✦ The Journey
-        </div>
-        <h2 class="text-cream" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.1;">
-          From Tree <em style="font-style: italic; color: #c8963e;">to Cup</em>
+  <section class="py-28" style="background:#FAF7F2;">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-16 space-y-4">
+        <p style="font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#9B7A50;">The Journey</p>
+        <h2 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:300; color:#1A0F00; line-height:1.1;">
+          From Tree <em style="font-style:italic; color:#8B6914;">to Cup</em>
         </h2>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
-          { step: '01', title: 'Natural Farming', desc: 'Our farmers use only traditional, chemical-free methods passed down through generations.', icon: '🌱' },
-          { step: '02', title: 'Hand Picked', desc: 'Every single cherry is hand-selected at peak ripeness for maximum flavor.', icon: '✋' },
-          { step: '03', title: 'Small-Batch Roasted', desc: 'Our expert roasters roast daily in small batches, monitoring every stage.', icon: '🔥' },
-          { step: '04', title: 'Shipped Fresh', desc: 'Your coffee ships within 24h of roasting, hermetically sealed for peak freshness.', icon: '📦' },
+          { step: '01', title: 'Natural Farming', desc: 'Traditional, chemical-free methods passed through generations.', icon: '◈' },
+          { step: '02', title: 'Hand Picked', desc: 'Every cherry selected at peak ripeness for maximum flavour.', icon: '◈' },
+          { step: '03', title: 'Small-Batch Roasted', desc: 'Expert roasters, small batches, every single day.', icon: '◈' },
+          { step: '04', title: 'Shipped Fresh', desc: 'Within 24h of roasting, sealed for peak freshness.', icon: '◈' },
         ].map((item) => (
-          <div class="p-6 rounded-2xl relative group" style="background: rgba(22,11,2,0.6); border: 1px solid rgba(200,150,62,0.1);">
-            <div class="absolute top-4 right-4 font-black text-4xl opacity-10 group-hover:opacity-20 transition-opacity"
-              style="color: #c8963e;">{item.step}</div>
-            <div class="text-3xl mb-4">{item.icon}</div>
-            <h3 class="font-black text-cream text-base mb-2">{item.title}</h3>
-            <p class="text-mocha-200 text-sm leading-relaxed" style="font-weight: 300;">{item.desc}</p>
+          <div class="space-y-4" style="border-top:2px solid rgba(26,15,0,0.08); padding-top:1.5rem;">
+            <p style="font-size:0.6rem; letter-spacing:0.2em; color:#9B7A50; font-weight:500;">{item.step}</p>
+            <h3 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.3rem; font-weight:400; color:#1A0F00;">{item.title}</h3>
+            <p style="font-size:0.85rem; font-weight:300; color:#5C3D1E; line-height:1.8;">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -85,25 +71,24 @@ const featured = getFeaturedProducts();
   <OriginsSection />
   <TestimonialsSection />
 
-  <!-- CTA Banner -->
-  <section class="py-16 mx-4 sm:mx-6 lg:mx-8 mb-8 rounded-3xl relative overflow-hidden"
-    style="background: linear-gradient(135deg, #2c1503 0%, #7a3d0a 50%, #c8963e 100%);">
-    <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
-    <div class="relative z-10 text-center space-y-6 px-6">
-      <h2 class="text-mocha-950" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1.1;">
-        Ready to Taste<br /><em style="font-style: italic;">Real</em> Yemeni Coffee?
+  <!-- Final CTA -->
+  <section class="py-32" style="background:#1A0F00;">
+    <div class="max-w-2xl mx-auto px-6 text-center space-y-8">
+      <p style="font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#8B6914;">Ready?</p>
+      <h2 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(2.5rem,6vw,4rem); font-weight:300; color:#F5E0B0; line-height:1.1;">
+        Taste <em style="font-style:italic; color:#C8963E;">Real</em><br />Yemeni Coffee.
       </h2>
-      <p class="text-mocha-800 max-w-lg mx-auto" style="font-weight: 300;">
-        Order today and get free shipping on your first order. 100% satisfaction guarantee or your money back.
+      <p style="font-size:0.9rem; font-weight:300; color:#9B7A50; line-height:1.8;">
+        Free shipping on your first order. 100% satisfaction guarantee.
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="/products/al-khawlani" class="btn no-underline font-black text-base px-8 py-3.5 rounded-xl transition-all hover:-translate-y-1"
-          style="background: #0a0500; color: #e8c47a; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <a href="/products/al-khawlani" class="no-underline"
+          style="display:inline-flex; align-items:center; padding:1.1rem 3rem; font-size:0.65rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; background:#F5E0B0; color:#1A0F00; transition:opacity 0.3s;">
           Shop Al-Khawlani
         </a>
-        <a href="/#story" class="btn no-underline font-semibold text-sm px-6 py-3.5 rounded-xl transition-all"
-          style="background: rgba(10,5,0,0.2); color: #0a0500; border: 2px solid rgba(10,5,0,0.3);">
-          Learn More
+        <a href="/#story" class="no-underline"
+          style="display:inline-flex; align-items:center; padding:1.1rem 3rem; font-size:0.65rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; background:transparent; color:#F5E0B0; border:1px solid rgba(245,224,176,0.2); transition:opacity 0.3s;">
+          Our Story
         </a>
       </div>
     </div>

@@ -5,67 +5,54 @@ const navLinks = [
   { href: '/#story', label: 'Our Story' },
   { href: '/#origins', label: 'Origins' },
 ];
-
 const currentPath = Astro.url.pathname;
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-30 transition-all duration-300">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-30 transition-all duration-500"
+  style="background: rgba(250,247,242,0.95); border-bottom: 1px solid rgba(26,15,0,0.07);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
     <div class="flex items-center justify-between h-16 sm:h-20">
 
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 no-underline group">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg"
-          style="background: linear-gradient(135deg, #c8963e, #e8c47a);">
-          <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-            <path d="M8 12h16l-2 12H10L8 12z" fill="#160b02"/>
-            <path d="M6 12h20" stroke="#160b02" stroke-width="2" stroke-linecap="round"/>
-            <path d="M24 16c2 0 4-1 4-3s-2-3-4-3" stroke="#160b02" stroke-width="2" stroke-linecap="round"/>
-            <path d="M12 8c0-2 4-4 4-4s4 2 4 4" stroke="#160b02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-          </svg>
-        </div>
-        <div>
-          <span class="leading-none tracking-widest" style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; font-weight: 500; color: #f5e0b0; letter-spacing: 0.15em;">MOCHA</span>
-          <p class="leading-none mt-0.5" style="font-size: 0.55rem; letter-spacing: 0.35em; color: #a05415; font-weight: 500; text-transform: uppercase;">Yemeni Coffee</p>
-        </div>
+      <a href="/" class="no-underline flex flex-col">
+        <span style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.4rem; font-weight:500; color:#1A0F00; letter-spacing:0.2em; line-height:1;">
+          MOCHA
+        </span>
+        <span style="font-size:0.5rem; letter-spacing:0.35em; color:#9B7A50; font-weight:500; text-transform:uppercase; margin-top:2px;">
+          Yemeni Coffee
+        </span>
       </a>
 
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex items-center gap-1">
+      <nav class="hidden md:flex items-center gap-8">
         {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 no-underline
-              ${currentPath === link.href
-                ? 'text-gold bg-mocha-700'
-                : 'text-mocha-100 hover:text-gold hover:bg-mocha-800'}`}
-          >
+          <a href={link.href}
+            class="no-underline transition-colors duration-200"
+            style={`font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+              color: ${currentPath === link.href ? '#1A0F00' : '#9B7A50'};`}>
             {link.label}
           </a>
         ))}
       </nav>
 
-      <!-- Right: Cart + Mobile -->
-      <div class="flex items-center gap-2">
-        <button
-          id="open-cart-btn"
-          class="relative p-2.5 rounded-xl text-mocha-100 hover:text-gold hover:bg-mocha-700 transition-all duration-200"
-          aria-label="Open cart"
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Right -->
+      <div class="flex items-center gap-4">
+        <!-- Cart -->
+        <button id="open-cart-btn" class="relative p-1 transition-opacity hover:opacity-60" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
             <line x1="3" y1="6" x2="21" y2="6"/>
             <path d="M16 10a4 4 0 01-8 0"/>
           </svg>
           <span id="cart-count-badge"
-            class="absolute -top-1 -left-1 w-5 h-5 bg-gold text-mocha-900 text-[10px] font-black rounded-full flex items-center justify-center hidden">
+            class="absolute -top-1 -right-1 w-4 h-4 text-[9px] font-bold rounded-full flex items-center justify-center hidden"
+            style="background:#1A0F00; color:#FAF7F2;">
           </span>
         </button>
 
-        <button id="mobile-menu-btn"
-          class="md:hidden p-2.5 rounded-xl text-mocha-100 hover:text-gold hover:bg-mocha-700 transition-all"
-          aria-label="Menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <!-- Mobile menu -->
+        <button id="mobile-menu-btn" class="md:hidden p-1 hover:opacity-60 transition-opacity" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F00" stroke-width="1.5" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6"/>
             <line x1="3" y1="12" x2="21" y2="12"/>
             <line x1="3" y1="18" x2="21" y2="18"/>
@@ -75,12 +62,12 @@ const currentPath = Astro.url.pathname;
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-mocha-900 border-t border-mocha-700">
-    <div class="px-4 py-4 flex flex-col gap-1">
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t" style="background:#FAF7F2; border-color:rgba(26,15,0,0.07);">
+    <div class="px-6 py-6 flex flex-col gap-5">
       {navLinks.map((link) => (
-        <a href={link.href}
-          class="px-4 py-3 rounded-lg text-sm font-semibold text-mocha-100 hover:text-gold hover:bg-mocha-800 transition-all no-underline">
+        <a href={link.href} class="no-underline"
+          style="font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#1A0F00;">
           {link.label}
         </a>
       ))}
@@ -88,27 +75,15 @@ const currentPath = Astro.url.pathname;
   </div>
 </header>
 
-<!-- Spacer -->
 <div class="h-16 sm:h-20"></div>
 
 <script>
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 20) {
-      header?.classList.add('bg-mocha-950/95', 'backdrop-blur-md', 'border-b', 'border-mocha-700/50', 'shadow-lg');
-    } else {
-      header?.classList.remove('bg-mocha-950/95', 'backdrop-blur-md', 'border-b', 'border-mocha-700/50', 'shadow-lg');
-    }
-  });
-
   document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
     document.getElementById('mobile-menu')?.classList.toggle('hidden');
   });
-
   document.getElementById('open-cart-btn')?.addEventListener('click', () => {
     window.dispatchEvent(new CustomEvent('mocha:open-cart'));
   });
-
   function updateBadge() {
     const badge = document.getElementById('cart-count-badge');
     if (!badge) return;
@@ -119,7 +94,6 @@ const currentPath = Astro.url.pathname;
       badge.classList.toggle('hidden', count === 0);
     } catch {}
   }
-
   updateBadge();
   window.addEventListener('mocha:cart', updateBadge);
 </script>

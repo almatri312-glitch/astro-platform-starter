@@ -2,62 +2,35 @@
 import type { Product } from '../../data/products';
 import AddToCartButton from './AddToCartButton';
 
-interface Props {
-  product: Product;
-}
-
+interface Props { product: Product; }
 const { product } = Astro.props;
-
 const roastBars = { Light: 1, Medium: 2, Dark: 3 };
 const bars = roastBars[product.roast] ?? 2;
 ---
 
-<article class={`card-glow group relative rounded-2xl overflow-hidden flex flex-col ${product.comingSoon ? 'opacity-80' : ''}`}
-  style={`background: ${product.cardBg}; border: 1px solid rgba(200,150,62,0.15);`}>
-
-  <!-- Badge -->
-  {product.badge && (
-    <div class="absolute top-3 right-3 z-10">
-      <span class={`badge text-[10px] tracking-wide ${product.comingSoon ? 'badge-outline' : 'badge-gold'}`}>
-        {product.badge}
-      </span>
-    </div>
-  )}
+<article class="card-hover group relative flex flex-col" style="background:#FFFFFF; border:1px solid rgba(26,15,0,0.07);">
 
   <!-- Visual -->
   <a href={product.comingSoon ? '#' : `/products/${product.slug}`} class="block no-underline">
-    <div class="relative h-52 overflow-hidden">
-      <div class="absolute inset-0 coffee-shimmer" style={`background: ${product.gradient};`}></div>
+    <div class="relative overflow-hidden" style="aspect-ratio:1;">
+      <div class="absolute inset-0 coffee-shimmer" style={`background:${product.gradient};`}></div>
 
-      <!-- Coming soon overlay -->
       {product.comingSoon && (
-        <div class="absolute inset-0 bg-black/40 flex items-center justify-center z-10">
-          <div class="text-center">
-            <div class="text-4xl mb-2">⏳</div>
-            <p class="text-cream font-bold text-sm tracking-wide">Coming Soon</p>
-          </div>
+        <div class="absolute inset-0 flex items-center justify-center" style="background:rgba(250,247,242,0.85);">
+          <p style="font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:#5C3D1E; font-weight:500;">Coming Soon</p>
         </div>
       )}
 
-      <!-- Bean decoration -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <svg viewBox="0 0 100 100" width="90" height="90" class="opacity-25 group-hover:opacity-40 transition-opacity duration-500">
-          <ellipse cx="50" cy="50" rx="28" ry="18" fill="currentColor" class="text-mocha-900" transform="rotate(-30 50 50)"/>
-          <line x1="30" y1="50" x2="70" y2="50" stroke={product.textColor} stroke-width="2.5" stroke-linecap="round" transform="rotate(-30 50 50)" opacity="0.5"/>
-          <ellipse cx="35" cy="35" rx="14" ry="9" fill="currentColor" class="text-mocha-900" transform="rotate(20 35 35)" opacity="0.7"/>
-          <line x1="25" y1="35" x2="45" y2="35" stroke={product.textColor} stroke-width="2" stroke-linecap="round" transform="rotate(20 35 35)" opacity="0.4"/>
-        </svg>
-      </div>
+      {product.badge && !product.comingSoon && (
+        <div class="absolute top-4 left-4">
+          <span style="font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; font-weight:600; color:#FAF7F2; background:#1A0F00; padding:4px 10px;">
+            {product.badge}
+          </span>
+        </div>
+      )}
 
-      <div class="absolute bottom-3 left-3">
-        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold"
-          style={`background: rgba(0,0,0,0.5); color: ${product.textColor}; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px);`}>
-          📍 {product.origin}
-        </span>
-      </div>
-      <div class="absolute bottom-3 right-3">
-        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold"
-          style={`background: rgba(0,0,0,0.5); color: ${product.textColor}; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px);`}>
+      <div class="absolute bottom-4 right-4 flex gap-2">
+        <span style="font-size:0.6rem; color:rgba(250,247,242,0.8); background:rgba(26,15,0,0.4); padding:3px 8px; backdrop-filter:blur(4px);">
           {product.weight}
         </span>
       </div>
@@ -65,75 +38,54 @@ const bars = roastBars[product.roast] ?? 2;
   </a>
 
   <!-- Content -->
-  <div class="flex flex-col flex-1 p-4 gap-3">
+  <div class="flex flex-col flex-1 p-5 gap-3">
+    <!-- Name -->
     <div>
       <a href={product.comingSoon ? '#' : `/products/${product.slug}`} class="no-underline">
-        <h3 class="font-black text-base leading-tight hover:text-gold transition-colors" style={`color: ${product.textColor};`}>
+        <h3 style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.2rem; font-weight:400; color:#1A0F00; line-height:1.2;">
           {product.name}
         </h3>
       </a>
-      <p class="text-mocha-300 text-xs mt-0.5 font-medium">{product.subtitle}</p>
-
-      {!product.comingSoon && product.reviews > 0 && (
-        <div class="flex items-center gap-1.5 mt-2">
-          <div class="flex gap-0.5">
-            {Array(5).fill(0).map((_, i) => (
-              <svg width="11" height="11" viewBox="0 0 24 24"
-                fill={i < Math.floor(product.rating) ? '#c8963e' : 'none'}
-                stroke="#c8963e" stroke-width="2">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            ))}
-          </div>
-          <span class="text-[11px] text-mocha-200">({product.reviews})</span>
-        </div>
-      )}
+      <p style="font-size:0.65rem; color:#9B7A50; margin-top:3px; letter-spacing:0.05em;">{product.origin}</p>
     </div>
 
-    <!-- Roast level -->
+    <!-- Roast -->
     <div class="flex items-center justify-between">
       <div class="flex gap-1">
-        {[1, 2, 3].map((bar) => (
-          <div class={`w-6 h-1.5 rounded-full ${bar <= bars ? 'bg-gold' : 'bg-mocha-700'}`}></div>
+        {[1,2,3].map((b) => (
+          <div style={`width:20px; height:2px; background:${b <= bars ? '#1A0F00' : 'rgba(26,15,0,0.12)'};`}></div>
         ))}
       </div>
-      <span class="text-xs text-mocha-200 font-medium">{product.roast} Roast</span>
+      <span style="font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; color:#9B7A50;">{product.roast} Roast</span>
     </div>
 
     <!-- Flavor notes -->
     <div class="flex flex-wrap gap-1.5">
-      {product.flavorNotes.slice(0, 3).map((note) => (
-        <span class="text-[10px] px-2 py-0.5 rounded-full font-medium"
-          style="background: rgba(200,150,62,0.1); color: #e8c47a; border: 1px solid rgba(200,150,62,0.2);">
+      {product.flavorNotes.slice(0,3).map((note) => (
+        <span style="font-size:0.6rem; color:#5C3D1E; border:1px solid rgba(26,15,0,0.12); padding:2px 8px; letter-spacing:0.05em;">
           {note}
         </span>
       ))}
     </div>
 
-    <!-- Price & CTA -->
-    <div class="mt-auto pt-2">
+    <!-- Price + CTA -->
+    <div class="mt-auto pt-3" style="border-top:1px solid rgba(26,15,0,0.06);">
       {product.comingSoon ? (
-        <div class="text-center py-3 rounded-xl font-bold text-sm"
-          style="background: rgba(44,21,3,0.5); border: 1px solid rgba(200,150,62,0.2); color: #e8c47a;">
-          Notify Me When Available
-        </div>
+        <p style="font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:#9B7A50; text-align:center; padding:0.75rem 0;">
+          Notify Me
+        </p>
       ) : (
         <div class="flex items-center justify-between gap-3">
           <div>
             {product.originalPrice && (
-              <div class="text-xs text-mocha-400 line-through">${product.originalPrice}</div>
+              <div style="font-size:0.75rem; color:#9B7A50; text-decoration:line-through;">${product.originalPrice}</div>
             )}
-            <div class="font-black text-xl text-gold">${product.price} <span class="text-xs font-medium text-mocha-200">USD</span></div>
+            <div style="font-family:'Cormorant Garamond',Georgia,serif; font-size:1.5rem; font-weight:300; color:#1A0F00; line-height:1;">
+              ${product.price}
+            </div>
           </div>
-          <div class="flex-1 max-w-[140px]">
-            <AddToCartButton
-              client:load
-              id={product.id}
-              slug={product.slug}
-              nameAr={product.name}
-              price={product.price}
-              gradient={product.gradient}
-            />
+          <div class="flex-1 max-w-[130px]">
+            <AddToCartButton client:load id={product.id} slug={product.slug} nameAr={product.name} price={product.price} gradient={product.gradient} />
           </div>
         </div>
       )}
