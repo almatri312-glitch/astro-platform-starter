@@ -1,0 +1,91 @@
+---
+---
+
+<section id="story" class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at 30% 50%, rgba(44,21,3,0.5) 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Visual -->
+      <div class="relative mx-auto max-w-sm lg:max-w-none">
+        <div class="rounded-3xl overflow-hidden shadow-2xl relative"
+          style="background: linear-gradient(145deg, #2c1503 0%, #5c2e08 50%, #c8963e 100%); aspect-ratio: 4/5;">
+          <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
+
+          <!-- Yemen map (decorative) -->
+          <div class="absolute inset-0 flex items-center justify-center p-8">
+            <svg viewBox="0 0 300 300" class="w-full h-full opacity-15">
+              <path d="M80 60 Q100 40 140 45 Q180 50 220 70 Q250 85 260 120 Q265 145 255 170 Q245 195 230 210 Q210 230 180 235 Q155 240 130 225 Q105 210 90 190 Q70 165 65 135 Q60 105 70 80 Z"
+                fill="#f5e0b0" stroke="#e8c47a" stroke-width="2"/>
+            </svg>
+          </div>
+
+          <div class="absolute inset-0 flex flex-col justify-end p-8">
+            <div class="space-y-3">
+              <p class="text-5xl font-black" style="color: #f5e0b0; line-height: 1;">Yemen</p>
+              <p class="text-lg font-medium" style="color: #e8c47a;">The Birthplace of Coffee</p>
+              <div class="h-px w-16" style="background: linear-gradient(90deg, #c8963e, transparent);"></div>
+              <p class="text-sm leading-relaxed" style="color: rgba(245,224,176,0.8); font-weight: 300;">
+                Legend has it that coffee was discovered in Yemen when a goat herder named Kaldi noticed his flock energized after eating berries from a wild tree.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute -top-4 -right-4 sm:-right-6 px-4 py-3 rounded-xl shadow-xl"
+          style="background: rgba(10,5,0,0.9); border: 1px solid rgba(200,150,62,0.3); backdrop-filter: blur(8px);">
+          <p class="text-gold font-black text-2xl">2,000+</p>
+          <p class="text-mocha-200 text-xs font-medium">Years of Heritage</p>
+        </div>
+
+        <div class="absolute -bottom-4 -left-4 sm:-left-6 px-4 py-3 rounded-xl shadow-xl"
+          style="background: rgba(10,5,0,0.9); border: 1px solid rgba(200,150,62,0.3); backdrop-filter: blur(8px);">
+          <p class="text-gold font-black text-2xl">100%</p>
+          <p class="text-mocha-200 text-xs font-medium">Natural & Organic</p>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold"
+          style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+          ✦ Our Story
+        </div>
+
+        <h2 class="font-black leading-tight" style="font-size: clamp(2rem, 4vw, 2.8rem); color: #f5e0b0;">
+          From Yemeni<br />
+          <span class="text-gradient">Highlands to Your Cup</span>
+        </h2>
+
+        <div class="space-y-4 text-mocha-100 leading-relaxed" style="font-size: 1rem; font-weight: 300;">
+          <p>
+            Mocha was born from a deep passion for Yemen's extraordinary coffee heritage. We are not just a store — we are a bridge between Yemeni mountain farmers and coffee lovers around the world.
+          </p>
+          <p>
+            We work directly with local farmers in Khawlan, Haraz, and Hadhramaut, ensuring fair prices for growers and the freshest possible beans for you.
+          </p>
+          <p>
+            Every bag is hand-selected, small-batch roasted, and shipped within days of roasting — so you always taste coffee at its absolute peak.
+          </p>
+        </div>
+
+        <!-- Values -->
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          {[
+            { icon: '🌱', title: '100% Organic', desc: 'No pesticides or additives' },
+            { icon: '🤝', title: 'Fair Trade', desc: 'Fair wages for farmers' },
+            { icon: '🔥', title: 'Fresh Roasted', desc: 'Small-batch, daily' },
+            { icon: '📦', title: 'Fast Delivery', desc: 'Ships within 24h of roast' },
+          ].map((v) => (
+            <div class="p-4 rounded-xl" style="background: rgba(44,21,3,0.5); border: 1px solid rgba(200,150,62,0.1);">
+              <div class="text-2xl mb-2">{v.icon}</div>
+              <div class="font-bold text-cream text-sm">{v.title}</div>
+              <div class="text-mocha-200 text-xs mt-0.5">{v.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

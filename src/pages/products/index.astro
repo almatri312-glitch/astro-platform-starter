@@ -1,0 +1,85 @@
+---
+import StoreLayout from '../../layouts/StoreLayout.astro';
+import ProductCard from '../../components/store/ProductCard.astro';
+import { products } from '../../data/products';
+---
+
+<StoreLayout
+  title="Shop All Coffees | Mocha"
+  description="Explore our full collection of authentic Yemeni single-origin coffees."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Header -->
+    <div class="mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold mb-4"
+        style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+        ✦ The Collection
+      </div>
+      <h1 class="font-black text-cream mb-3" style="font-size: clamp(2rem, 4vw, 3rem);">
+        All Coffees
+      </h1>
+      <p class="text-mocha-200" style="font-weight: 300;">
+        {products.length} products · Authentic Yemeni single-origin
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="flex flex-wrap gap-2 mb-10">
+      {['All', 'Light', 'Medium', 'Dark'].map((filter, i) => (
+        <button
+          class="filter-btn px-4 py-2 rounded-full text-sm font-bold transition-all"
+          data-filter={filter === 'All' ? 'all' : filter}
+          style={i === 0
+            ? 'background: linear-gradient(135deg, #c8963e, #e8c47a); color: #0a0500;'
+            : 'background: rgba(44,21,3,0.6); color: #e8c47a; border: 1px solid rgba(200,150,62,0.2);'}
+        >
+          {filter}
+        </button>
+      ))}
+    </div>
+
+    <!-- Grid -->
+    <div id="products-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {products.map((product) => (
+        <div class="product-item" data-roast={product.roast}>
+          <ProductCard product={product} />
+        </div>
+      ))}
+    </div>
+
+    <div id="empty-state" class="hidden py-20 text-center">
+      <div class="text-5xl mb-4">☕</div>
+      <p class="text-mocha-200 font-semibold text-lg">No products in this category yet.</p>
+    </div>
+  </div>
+</StoreLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.product-item');
+  const emptyState = document.getElementById('empty-state');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      filterBtns.forEach((b) => {
+        (b as HTMLElement).style.background = 'rgba(44,21,3,0.6)';
+        (b as HTMLElement).style.color = '#e8c47a';
+        (b as HTMLElement).style.border = '1px solid rgba(200,150,62,0.2)';
+      });
+      (btn as HTMLElement).style.background = 'linear-gradient(135deg, #c8963e, #e8c47a)';
+      (btn as HTMLElement).style.color = '#0a0500';
+      (btn as HTMLElement).style.border = 'none';
+
+      let visible = 0;
+      items.forEach((item) => {
+        const roast = item.getAttribute('data-roast');
+        const show = filter === 'all' || roast === filter;
+        (item as HTMLElement).style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      emptyState?.classList.toggle('hidden', visible > 0);
+    });
+  });
+</script>

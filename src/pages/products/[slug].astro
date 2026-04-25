@@ -1,0 +1,250 @@
+---
+import StoreLayout from '../../layouts/StoreLayout.astro';
+import ProductCard from '../../components/store/ProductCard.astro';
+import AddToCartButton from '../../components/store/AddToCartButton';
+import { products, getProductBySlug } from '../../data/products';
+
+export async function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug!);
+if (!product) return Astro.redirect('/products');
+
+const related = products.filter((p) => p.id !== product.id).slice(0, 3);
+const roastBars = { Light: 1, Medium: 2, Dark: 3 };
+const bars = roastBars[product.roast] ?? 2;
+---
+
+<StoreLayout
+  title={`${product.name} | Mocha`}
+  description={product.shortDesc}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-mocha-300 mb-8">
+      <a href="/" class="hover:text-gold transition-colors no-underline">Home</a>
+      <span>/</span>
+      <a href="/products" class="hover:text-gold transition-colors no-underline">Shop</a>
+      <span>/</span>
+      <span class="text-cream font-medium">{product.name}</span>
+    </nav>
+
+    <!-- Main -->
+    <div class="grid lg:grid-cols-2 gap-12 mb-20">
+
+      <!-- Visual -->
+      <div>
+        <div class="rounded-3xl overflow-hidden relative shadow-2xl"
+          style={`background: ${product.gradient}; aspect-ratio: 1;`}>
+          <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
+
+          {product.comingSoon && (
+            <div class="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
+              <div class="text-center px-8 py-6 rounded-2xl" style="background: rgba(10,5,0,0.8); border: 1px solid rgba(200,150,62,0.3);">
+                <div class="text-5xl mb-3">⏳</div>
+                <p class="font-black text-cream text-xl mb-2">Coming Soon</p>
+                <p class="text-mocha-200 text-sm">This coffee is on its way. Stay tuned.</p>
+              </div>
+            </div>
+          )}
+
+          <!-- Coffee beans art -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <svg viewBox="0 0 200 200" width="220" height="220" class="opacity-20">
+              <ellipse cx="100" cy="100" rx="45" ry="28" fill={product.textColor} transform="rotate(-30 100 100)"/>
+              <line x1="62" y1="100" x2="138" y2="100" stroke={product.cardBg} stroke-width="4" stroke-linecap="round" transform="rotate(-30 100 100)"/>
+              <ellipse cx="48" cy="55" rx="28" ry="17" fill={product.textColor} transform="rotate(15 48 55)" opacity="0.8"/>
+              <line x1="24" y1="55" x2="72" y2="55" stroke={product.cardBg} stroke-width="3" stroke-linecap="round" transform="rotate(15 48 55)"/>
+              <ellipse cx="152" cy="148" rx="28" ry="17" fill={product.textColor} transform="rotate(-45 152 148)" opacity="0.8"/>
+              <line x1="128" y1="148" x2="176" y2="148" stroke={product.cardBg} stroke-width="3" stroke-linecap="round" transform="rotate(-45 152 148)"/>
+              <ellipse cx="155" cy="55" rx="20" ry="12" fill={product.textColor} transform="rotate(20 155 55)" opacity="0.6"/>
+              <ellipse cx="45" cy="152" rx="20" ry="12" fill={product.textColor} transform="rotate(-15 45 152)" opacity="0.6"/>
+            </svg>
+          </div>
+
+          {product.badge && (
+            <div class="absolute top-5 left-5">
+              <span class={`badge ${product.comingSoon ? 'badge-outline' : 'badge-gold'} text-sm px-3 py-1`}>{product.badge}</span>
+            </div>
+          )}
+
+          <div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+            <span class="px-3 py-1.5 rounded-lg text-sm font-bold"
+              style={`background: rgba(0,0,0,0.6); color: ${product.textColor}; backdrop-filter: blur(8px);`}>
+              {product.weight}
+            </span>
+            <span class="px-3 py-1.5 rounded-lg text-sm font-bold"
+              style={`background: rgba(0,0,0,0.6); color: ${product.textColor}; backdrop-filter: blur(8px);`}>
+              📍 {product.origin}
+            </span>
+          </div>
+        </div>
+
+        <!-- Color swatches (decorative) -->
+        <div class="flex gap-3 mt-4">
+          {[product.gradient, 'linear-gradient(145deg, #2c1503, #7a3d0a)', 'linear-gradient(145deg, #5c2e08, #c8963e)'].map((g, i) => (
+            <div class={`w-16 h-16 rounded-xl cursor-pointer transition-all hover:scale-105 ${i === 0 ? 'ring-2 ring-gold' : ''}`}
+              style={`background: ${g}; border: 1px solid rgba(200,150,62,${i === 0 ? 0.6 : 0.15});`}></div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="space-y-6">
+
+        <!-- Name -->
+        <div>
+          <h1 class="font-black leading-tight mb-1" style="font-size: clamp(1.8rem, 3vw, 2.5rem); color: #f5e0b0;">
+            {product.name}
+          </h1>
+          <p class="text-mocha-300 text-base font-medium">{product.subtitle}</p>
+
+          {!product.comingSoon && product.reviews > 0 && (
+            <div class="flex items-center gap-3 mt-3">
+              <span class="font-black text-gold text-lg">{product.rating}</span>
+              <div class="flex gap-1">
+                {Array(5).fill(0).map((_, i) => (
+                  <svg width="16" height="16" viewBox="0 0 24 24"
+                    fill={i < Math.floor(product.rating) ? '#c8963e' : 'none'}
+                    stroke="#c8963e" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                ))}
+              </div>
+              <span class="text-sm text-mocha-200">({product.reviews} reviews)</span>
+            </div>
+          )}
+        </div>
+
+        <!-- Price -->
+        <div class="py-4 border-y" style="border-color: rgba(200,150,62,0.2);">
+          {product.comingSoon ? (
+            <p class="text-mocha-200 font-semibold">Price will be announced soon</p>
+          ) : (
+            <div class="flex items-baseline gap-3">
+              {product.originalPrice && (
+                <span class="text-mocha-400 line-through text-lg">${product.originalPrice}</span>
+              )}
+              <span class="font-black text-gold" style="font-size: 2.5rem;">${product.price}</span>
+              <span class="text-mocha-200 font-medium">USD / {product.weight}</span>
+            </div>
+          )}
+        </div>
+
+        <!-- Details grid -->
+        <div class="grid grid-cols-2 gap-3">
+          {[
+            { label: 'Weight', value: product.weight },
+            { label: 'Origin', value: product.origin },
+            { label: 'Roast', value: `${product.roast} Roast` },
+            { label: 'Stock', value: product.inStock ? '✅ In Stock' : '⏳ Coming Soon' },
+          ].map((d) => (
+            <div class="p-3 rounded-xl" style="background: rgba(44,21,3,0.5); border: 1px solid rgba(200,150,62,0.1);">
+              <p class="text-mocha-300 text-xs mb-1">{d.label}</p>
+              <p class="text-cream font-bold text-sm">{d.value}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Roast meter -->
+        <div class="p-4 rounded-xl" style="background: rgba(44,21,3,0.4); border: 1px solid rgba(200,150,62,0.1);">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-cream font-bold text-sm">Roast Level: {product.roast}</span>
+            <div class="flex gap-2">
+              {[1, 2, 3].map((bar) => (
+                <div class={`w-8 h-2 rounded-full ${bar <= bars ? 'bg-gold' : 'bg-mocha-700'}`}></div>
+              ))}
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-xs text-mocha-300">
+            <span>Light</span><span>Medium</span><span>Dark</span>
+          </div>
+        </div>
+
+        <!-- Flavor notes -->
+        <div>
+          <p class="text-mocha-200 text-sm font-medium mb-3">Tasting Notes</p>
+          <div class="flex flex-wrap gap-2">
+            {product.flavorNotes.map((note) => (
+              <span class="px-3 py-1.5 rounded-full text-sm font-semibold"
+                style="background: rgba(200,150,62,0.12); color: #e8c47a; border: 1px solid rgba(200,150,62,0.25);">
+                {note}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+          {product.tags.map((tag) => (
+            <span class="px-3 py-1 rounded-full text-xs font-medium"
+              style="background: rgba(44,21,3,0.6); color: #a05415; border: 1px solid rgba(200,150,62,0.1);">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <!-- CTA -->
+        <div class="space-y-3 pt-2">
+          {product.comingSoon ? (
+            <div class="w-full py-4 rounded-xl font-black text-base text-center"
+              style="background: rgba(44,21,3,0.6); border: 2px dashed rgba(200,150,62,0.3); color: #e8c47a;">
+              ⏳ Notify Me When Available
+            </div>
+          ) : (
+            <AddToCartButton
+              client:load
+              id={product.id}
+              slug={product.slug}
+              nameAr={product.name}
+              price={product.price}
+              gradient={product.gradient}
+              large
+            />
+          )}
+          <div class="grid grid-cols-3 gap-2 text-center">
+            {[
+              { icon: '🚚', text: 'Free Shipping' },
+              { icon: '↩️', text: 'Free Returns' },
+              { icon: '🔒', text: 'Secure Checkout' },
+            ].map((item) => (
+              <div class="py-2 px-1 rounded-lg text-xs font-medium text-mocha-200"
+                style="background: rgba(44,21,3,0.4); border: 1px solid rgba(200,150,62,0.1);">
+                <div class="text-base mb-0.5">{item.icon}</div>
+                {item.text}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full Description -->
+    {!product.comingSoon && (
+      <div class="mb-20 max-w-4xl">
+        <div class="p-8 rounded-2xl" style="background: rgba(22,11,2,0.6); border: 1px solid rgba(200,150,62,0.15);">
+          <h2 class="font-black text-cream text-xl mb-4">About This Coffee</h2>
+          <p class="text-mocha-100 leading-relaxed text-base" style="font-weight: 300;">
+            {product.description}
+          </p>
+        </div>
+      </div>
+    )}
+
+    <!-- Related -->
+    {related.length > 0 && (
+      <section>
+        <div class="flex items-center justify-between mb-8">
+          <a href="/products" class="btn btn-outline btn-sm no-underline">View All</a>
+          <h2 class="font-black text-cream text-xl">You May Also Like</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {related.map((p) => <ProductCard product={p} />)}
+        </div>
+      </section>
+    )}
+  </div>
+</StoreLayout>

@@ -1,0 +1,42 @@
+---
+import '../styles/globals.css';
+import Navbar from '../components/store/Navbar.astro';
+import StoreFooter from '../components/store/StoreFooter.astro';
+import CartWrapper from '../components/store/CartWrapper';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Mocha · Authentic Yemeni Coffee',
+  description = 'Discover the finest single-origin Yemeni coffee. From the highlands of Khawlan to your cup — Mocha delivers an unparalleled coffee experience.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-mocha-950 text-cream antialiased">
+    <CartWrapper client:load />
+    <Navbar />
+    <main><slot /></main>
+    <StoreFooter />
+  </body>
+</html>

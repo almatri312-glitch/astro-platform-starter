@@ -1,0 +1,66 @@
+---
+const testimonials = [
+  {
+    name: 'Ahmed Al-Malki',
+    role: 'Coffee enthusiast, Riyadh',
+    text: 'The best Yemeni coffee I have ever tasted. Deep, complex flavor with a lingering floral finish. Al-Khawlani is absolutely extraordinary — it has ruined me for every other coffee.',
+    rating: 5,
+    avatar: 'A',
+  },
+  {
+    name: 'Sarah Mitchell',
+    role: 'Specialty coffee blogger',
+    text: "I've reviewed coffees from dozens of origins, and Al-Khawlani stands alone. The wild blueberry note is unmistakable and the honey sweetness on the finish is unlike anything I've tried. Mocha is the real deal.",
+    rating: 5,
+    avatar: 'S',
+  },
+  {
+    name: 'Rami Al-Qhtani',
+    role: 'Café owner',
+    text: "We started serving Mocha's Al-Khawlani as our featured pour-over three months ago. Our customers ask for it by name now. The consistency and freshness are unmatched. Highly recommend for any serious café.",
+    rating: 5,
+    avatar: 'R',
+  },
+];
+---
+
+<section class="py-24 relative">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold"
+        style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+        ✦ Customer Reviews
+      </div>
+      <h2 class="font-black text-cream" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+        What Our Customers Say
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {testimonials.map((t) => (
+        <div class="relative p-6 rounded-2xl flex flex-col gap-4"
+          style="background: rgba(22,11,2,0.8); border: 1px solid rgba(200,150,62,0.15);">
+          <div class="text-5xl font-black leading-none" style="color: rgba(200,150,62,0.15);">"</div>
+          <div class="flex gap-1 -mt-4">
+            {Array(t.rating).fill(0).map(() => (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#c8963e">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            ))}
+          </div>
+          <p class="text-mocha-100 leading-relaxed flex-1" style="font-weight: 300; font-size: 0.95rem;">{t.text}</p>
+          <div class="flex items-center gap-3 pt-2 border-t" style="border-color: rgba(200,150,62,0.1);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-mocha-900 text-sm flex-shrink-0"
+              style="background: linear-gradient(135deg, #c8963e, #e8c47a);">
+              {t.avatar}
+            </div>
+            <div>
+              <p class="font-bold text-cream text-sm">{t.name}</p>
+              <p class="text-mocha-300 text-xs">{t.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
