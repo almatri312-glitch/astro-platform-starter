@@ -1,0 +1,125 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/products', label: 'Shop' },
+  { href: '/#story', label: 'Our Story' },
+  { href: '/#origins', label: 'Origins' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-30 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 no-underline group">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg"
+          style="background: linear-gradient(135deg, #c8963e, #e8c47a);">
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+            <path d="M8 12h16l-2 12H10L8 12z" fill="#160b02"/>
+            <path d="M6 12h20" stroke="#160b02" stroke-width="2" stroke-linecap="round"/>
+            <path d="M24 16c2 0 4-1 4-3s-2-3-4-3" stroke="#160b02" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 8c0-2 4-4 4-4s4 2 4 4" stroke="#160b02" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-xl sm:text-2xl font-black text-gradient leading-none tracking-tight">MOCHA</span>
+          <p class="text-[10px] text-mocha-200 tracking-widest font-medium leading-none mt-0.5">YEMENI COFFEE</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-1">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 no-underline
+              ${currentPath === link.href
+                ? 'text-gold bg-mocha-700'
+                : 'text-mocha-100 hover:text-gold hover:bg-mocha-800'}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right: Cart + Mobile -->
+      <div class="flex items-center gap-2">
+        <button
+          id="open-cart-btn"
+          class="relative p-2.5 rounded-xl text-mocha-100 hover:text-gold hover:bg-mocha-700 transition-all duration-200"
+          aria-label="Open cart"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span id="cart-count-badge"
+            class="absolute -top-1 -left-1 w-5 h-5 bg-gold text-mocha-900 text-[10px] font-black rounded-full flex items-center justify-center hidden">
+          </span>
+        </button>
+
+        <button id="mobile-menu-btn"
+          class="md:hidden p-2.5 rounded-xl text-mocha-100 hover:text-gold hover:bg-mocha-700 transition-all"
+          aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-mocha-900 border-t border-mocha-700">
+    <div class="px-4 py-4 flex flex-col gap-1">
+      {navLinks.map((link) => (
+        <a href={link.href}
+          class="px-4 py-3 rounded-lg text-sm font-semibold text-mocha-100 hover:text-gold hover:bg-mocha-800 transition-all no-underline">
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<!-- Spacer -->
+<div class="h-16 sm:h-20"></div>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('bg-mocha-950/95', 'backdrop-blur-md', 'border-b', 'border-mocha-700/50', 'shadow-lg');
+    } else {
+      header?.classList.remove('bg-mocha-950/95', 'backdrop-blur-md', 'border-b', 'border-mocha-700/50', 'shadow-lg');
+    }
+  });
+
+  document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  document.getElementById('open-cart-btn')?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('mocha:open-cart'));
+  });
+
+  function updateBadge() {
+    const badge = document.getElementById('cart-count-badge');
+    if (!badge) return;
+    try {
+      const cart = JSON.parse(localStorage.getItem('mocha-cart') || '[]');
+      const count = cart.reduce((s: number, i: { quantity: number }) => s + i.quantity, 0);
+      badge.textContent = String(count);
+      badge.classList.toggle('hidden', count === 0);
+    } catch {}
+  }
+
+  updateBadge();
+  window.addEventListener('mocha:cart', updateBadge);
+</script>

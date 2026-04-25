@@ -1,19 +1,111 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
+import StoreLayout from '../layouts/StoreLayout.astro';
+import Hero from '../components/store/Hero.astro';
+import ProductCard from '../components/store/ProductCard.astro';
+import StorySection from '../components/store/StorySection.astro';
+import OriginsSection from '../components/store/OriginsSection.astro';
+import TestimonialsSection from '../components/store/TestimonialsSection.astro';
+import { getFeaturedProducts } from '../data/products';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const featured = getFeaturedProducts();
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+<StoreLayout>
+  <Hero />
+
+  <div class="gold-divider my-2"></div>
+
+  <!-- Featured Products -->
+  <section class="py-20 relative">
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(44,21,3,0.3) 0%, transparent 60%);"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex items-center justify-between mb-12">
+        <a href="/products" class="btn btn-outline btn-sm no-underline flex items-center gap-2">
+          View All
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <div class="text-right">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-bold mb-2"
+            style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+            ✦ Our Collection
+          </div>
+          <h2 class="font-black text-cream" style="font-size: clamp(1.6rem, 3vw, 2.2rem);">
+            Shop the Collection
+          </h2>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featured.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <StorySection />
+
+  <!-- Process -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="gold-divider mb-20"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold"
+          style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+          ✦ The Journey
+        </div>
+        <h2 class="font-black text-cream" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+          From Tree to Cup
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { step: '01', title: 'Natural Farming', desc: 'Our farmers use only traditional, chemical-free methods passed down through generations.', icon: '🌱' },
+          { step: '02', title: 'Hand Picked', desc: 'Every single cherry is hand-selected at peak ripeness for maximum flavor.', icon: '✋' },
+          { step: '03', title: 'Small-Batch Roasted', desc: 'Our expert roasters roast daily in small batches, monitoring every stage.', icon: '🔥' },
+          { step: '04', title: 'Shipped Fresh', desc: 'Your coffee ships within 24h of roasting, hermetically sealed for peak freshness.', icon: '📦' },
+        ].map((item) => (
+          <div class="p-6 rounded-2xl relative group" style="background: rgba(22,11,2,0.6); border: 1px solid rgba(200,150,62,0.1);">
+            <div class="absolute top-4 right-4 font-black text-4xl opacity-10 group-hover:opacity-20 transition-opacity"
+              style="color: #c8963e;">{item.step}</div>
+            <div class="text-3xl mb-4">{item.icon}</div>
+            <h3 class="font-black text-cream text-base mb-2">{item.title}</h3>
+            <p class="text-mocha-200 text-sm leading-relaxed" style="font-weight: 300;">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <OriginsSection />
+  <TestimonialsSection />
+
+  <!-- CTA Banner -->
+  <section class="py-16 mx-4 sm:mx-6 lg:mx-8 mb-8 rounded-3xl relative overflow-hidden"
+    style="background: linear-gradient(135deg, #2c1503 0%, #7a3d0a 50%, #c8963e 100%);">
+    <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
+    <div class="relative z-10 text-center space-y-6 px-6">
+      <h2 class="font-black text-mocha-950" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">
+        Ready to Experience<br />Real Yemeni Coffee?
+      </h2>
+      <p class="text-mocha-800 max-w-lg mx-auto" style="font-weight: 300;">
+        Order today and get free shipping on your first order. 100% satisfaction guarantee or your money back.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/products/al-khawlani" class="btn no-underline font-black text-base px-8 py-3.5 rounded-xl transition-all hover:-translate-y-1"
+          style="background: #0a0500; color: #e8c47a; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+          Shop Al-Khawlani
+        </a>
+        <a href="/#story" class="btn no-underline font-semibold text-sm px-6 py-3.5 rounded-xl transition-all"
+          style="background: rgba(10,5,0,0.2); color: #0a0500; border: 2px solid rgba(10,5,0,0.3);">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+</StoreLayout>

@@ -1,78 +1,148 @@
 @import 'tailwindcss';
 
 @theme {
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* Mocha coffee palette */
+  --color-mocha-950: #050200;
+  --color-mocha-900: #0a0500;
+  --color-mocha-800: #160b02;
+  --color-mocha-700: #2c1503;
+  --color-mocha-600: #3d1e05;
+  --color-mocha-500: #5c2e08;
+  --color-mocha-400: #7a3d0a;
+  --color-mocha-300: #a05415;
+  --color-mocha-200: #c8963e;
+  --color-mocha-100: #e8c47a;
+  --color-mocha-50: #f5e0b0;
+
+  --color-gold: #c8963e;
+  --color-gold-light: #e8c47a;
+  --color-cream: #f5e0b0;
+  --color-parchment: #fdf4e7;
+
+  /* Legacy */
+  --color-primary: #c8963e;
+  --color-primary-content: #0a0500;
+  --color-complementary: #2c1503;
 }
 
 @layer base {
-    h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
-    h2 {
-        @apply text-2xl font-bold sm:text-3xl;
-    }
+  h1 {
+    @apply text-4xl font-bold tracking-tight sm:text-5xl;
+  }
 
-    a:not(.btn) {
-        @apply underline transition hover:opacity-80;
-    }
+  h2 {
+    @apply text-2xl font-bold sm:text-3xl;
+  }
 
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
+  a:not(.btn):not(.no-underline) {
+    @apply transition hover:opacity-80;
+  }
 
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
-    }
+  pre {
+    @apply p-6 overflow-x-auto rounded-lg;
+  }
+
+  :not(pre) > code {
+    @apply px-1 py-0.5 font-mono rounded bg-mocha-800 text-gold;
+    font-size: 0.9em;
+  }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer text-center font-bold no-underline transition-all duration-200;
+    padding: var(--btn-py, 0.875rem) var(--btn-px, 1.5rem);
+    font-size: var(--btn-font-size, 0.9rem);
+    border-radius: var(--btn-border-radius, 0.375rem);
+    letter-spacing: 0.03em;
+    &:disabled { @apply opacity-40 cursor-not-allowed; }
+  }
 
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
+  .btn-gold {
+    @apply bg-gold text-mocha-900 hover:bg-gold-light;
+    box-shadow: 0 4px 24px color-mix(in oklab, #c8963e 35%, transparent);
+    &:hover {
+      box-shadow: 0 6px 32px color-mix(in oklab, #c8963e 50%, transparent);
+      transform: translateY(-1px);
     }
+  }
 
-    .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+  .btn-outline {
+    @apply border border-gold text-gold bg-transparent hover:bg-gold hover:text-mocha-900;
+  }
 
-        &:hover {
-            @apply bg-primary/85;
-        }
+  .btn-ghost {
+    @apply text-cream bg-transparent hover:bg-mocha-700;
+  }
 
-        &:disabled {
-            @apply text-gray-400 bg-gray-700;
-        }
+  .btn-lg {
+    --btn-font-size: 1.05rem;
+    --btn-px: 2rem;
+    --btn-py: 1rem;
+  }
+
+  .btn-sm {
+    --btn-font-size: 0.8rem;
+    --btn-px: 1rem;
+    --btn-py: 0.55rem;
+  }
+
+  .card-glow {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px color-mix(in oklab, #c8963e 20%, transparent);
     }
+  }
 
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
-    }
+  .text-gradient {
+    background: linear-gradient(135deg, #c8963e 0%, #e8c47a 50%, #f5e0b0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #c8963e 50%, transparent 100%);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wide;
+  }
+
+  .badge-gold {
+    @apply bg-gold text-mocha-900;
+  }
+
+  .badge-outline {
+    @apply border border-gold text-gold bg-transparent;
+  }
 }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #160b02; }
+::-webkit-scrollbar-thumb { background: #5c2e08; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #c8963e; }
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.float-anim { animation: float 4s ease-in-out infinite; }
+
+/* Shimmer */
+@keyframes shimmer {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+.coffee-shimmer { animation: shimmer 3s ease-in-out infinite; }

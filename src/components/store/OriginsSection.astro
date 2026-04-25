@@ -1,0 +1,91 @@
+---
+const origins = [
+  {
+    name: 'Khawlan',
+    nameAr: 'خولان',
+    elevation: '2,200m',
+    desc: 'Ancient highlands north of Sanaa. The birthplace of Al-Khawlani — our flagship bean known for its wild berry complexity.',
+    gradient: 'linear-gradient(145deg, #0a0500, #2c1503, #7a3d0a)',
+    icon: '⛰️',
+    active: true,
+  },
+  {
+    name: 'Haraz',
+    nameAr: 'حراز',
+    elevation: '2,500m',
+    desc: "Yemen's most famous coffee mountain range. Produces bold, dark beans with intense smokiness and depth.",
+    gradient: 'linear-gradient(145deg, #160b02, #3d1e05, #a05415)',
+    icon: '🏔️',
+    active: false,
+  },
+  {
+    name: 'Ibb',
+    nameAr: 'إب',
+    elevation: '1,800m',
+    desc: 'The "Green Province" of Yemen. Heavy rainfall and fertile soil yield bright, fruity coffees with vibrant acidity.',
+    gradient: 'linear-gradient(145deg, #1a0c00, #4a2a08, #c8963e)',
+    icon: '🌿',
+    active: false,
+  },
+  {
+    name: 'Hadhramaut',
+    nameAr: 'حضرموت',
+    elevation: '1,200m',
+    desc: 'The legendary eastern valley. Calm, earthy beans with a wood-fire roasting tradition unique to this ancient land.',
+    gradient: 'linear-gradient(145deg, #1a0800, #5c2e08, #d4a228)',
+    icon: '🏜️',
+    active: false,
+  },
+];
+---
+
+<section id="origins" class="py-24 relative">
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at 80% 50%, rgba(22,11,2,0.8) 0%, transparent 60%);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold"
+        style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+        ✦ Origin Regions
+      </div>
+      <h2 class="font-black text-cream" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+        Sourced from the Heart of Yemen
+      </h2>
+      <p class="text-mocha-100 max-w-2xl mx-auto" style="font-weight: 300;">
+        Each Yemeni region imparts a distinct character shaped by altitude, climate, and generations of farming tradition.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {origins.map((origin) => (
+        <div class={`group relative rounded-2xl overflow-hidden card-glow ${origin.active ? '' : 'opacity-70'}`}
+          style={`background: ${origin.gradient}; border: 1px solid rgba(200,150,62,${origin.active ? 0.4 : 0.15}); aspect-ratio: 3/4;`}>
+          <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
+
+          {origin.active && (
+            <div class="absolute top-3 left-3">
+              <span class="badge badge-gold text-[10px]">Live Now</span>
+            </div>
+          )}
+
+          <div class="absolute inset-0 flex flex-col justify-end p-5">
+            <div class="text-4xl mb-3">{origin.icon}</div>
+            <div>
+              <div class="flex items-center justify-between mb-0.5">
+                <h3 class="font-black text-xl text-cream">{origin.name}</h3>
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full" style="background: rgba(200,150,62,0.2); color: #e8c47a;">
+                  ▲ {origin.elevation}
+                </span>
+              </div>
+              <p class="text-mocha-200 text-xs font-medium tracking-wider mb-2">{origin.nameAr}</p>
+              <p class="text-sm leading-relaxed text-mocha-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style="font-weight: 300;">
+                {origin.desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
