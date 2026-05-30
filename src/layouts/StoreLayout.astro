@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import AnnouncementBar from '../components/store/AnnouncementBar.astro';
 import Navbar from '../components/store/Navbar.astro';
 import StoreFooter from '../components/store/StoreFooter.astro';
 import CartWrapper from '../components/store/CartWrapper';
@@ -34,6 +35,7 @@ const {
     />
   </head>
   <body class="bg-mocha-950 text-cream antialiased">
+    <AnnouncementBar />
     <CartWrapper client:load />
     <Navbar />
     <main><slot /></main>
