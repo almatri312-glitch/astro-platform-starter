@@ -2,115 +2,167 @@
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden -mt-16 sm:-mt-20">
-  <!-- Background -->
-  <div class="absolute inset-0" style="background: radial-gradient(ellipse at 60% 50%, #2c1503 0%, #0a0500 60%, #050200 100%);"></div>
-  <div class="absolute inset-0 opacity-25" style="background-image: url('/images/noise.png');"></div>
+  <!-- Background layers -->
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at 65% 45%, #3d1e05 0%, #160b02 40%, #050200 80%);"></div>
+  <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
 
-  <!-- Glowing orbs -->
-  <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
-    style="background: radial-gradient(circle, #c8963e 0%, transparent 70%);"></div>
-  <div class="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full blur-3xl opacity-10"
-    style="background: radial-gradient(circle, #e8c47a 0%, transparent 70%);"></div>
+  <!-- Animated background orbs -->
+  <div class="absolute top-1/4 right-1/3 w-[500px] h-[500px] rounded-full blur-3xl opacity-15 float-anim"
+    style="background: radial-gradient(circle, #c8963e 0%, transparent 65%); animation-duration: 6s;"></div>
+  <div class="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-10"
+    style="background: radial-gradient(circle, #e8c47a 0%, transparent 70%); animation: float 8s ease-in-out infinite reverse;"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-3xl opacity-5"
+    style="background: radial-gradient(circle, #7a3d0a 0%, transparent 60%);"></div>
 
   <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
     <div class="grid lg:grid-cols-2 gap-12 items-center">
 
-      <!-- Text -->
-      <div class="space-y-8">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold tracking-widest"
-          style="border-color: rgba(200,150,62,0.4); background: rgba(200,150,62,0.08); color: #e8c47a;">
-          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
-          Now Available · Al-Khawlani Single Origin
+      <!-- Left: Text content -->
+      <div class="space-y-8 order-2 lg:order-1">
+
+        <!-- Badge row -->
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-bold tracking-widest"
+            style="border-color: rgba(200,150,62,0.4); background: rgba(200,150,62,0.08); color: #e8c47a;">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+            Now Available · Al-Khawlani
+          </div>
+          <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold"
+            style="background: rgba(22,11,2,0.8); border: 1px solid rgba(200,150,62,0.15); color: #c8963e;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#c8963e">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            4.9 · 318 Reviews
+          </div>
         </div>
 
         <!-- Headline -->
-        <div class="space-y-2">
-          <h1 class="font-black leading-tight" style="font-size: clamp(2.8rem, 7vw, 5rem); color: #f5e0b0; line-height: 1.1;">
-            Yemen's Finest
-            <br />
-            <span class="text-gradient">Coffee, Delivered.</span>
+        <div class="space-y-3">
+          <h1 class="font-black leading-none tracking-tight" style="font-size: clamp(3rem, 7.5vw, 5.5rem); color: #f5e0b0; line-height: 1.05;">
+            Yemen's<br/>
+            Finest<br/>
+            <span class="text-gradient">Coffee.</span>
           </h1>
-          <p class="text-mocha-100 text-lg sm:text-xl leading-relaxed max-w-xl" style="font-weight: 300;">
-            From the ancient highlands of Khawlan — hand-picked, naturally processed,
-            and roasted in small batches to preserve every note of wild complexity.
+          <p class="text-mocha-100 text-lg sm:text-xl leading-relaxed max-w-lg" style="font-weight: 300;">
+            Ancient highlands. Hand-picked cherries. Small-batch roasted daily.
+            Experience coffee the way it was born — in Yemen.
           </p>
         </div>
 
         <!-- CTAs -->
         <div class="flex flex-wrap items-center gap-4">
-          <a href="/products/al-khawlani" class="btn btn-gold btn-lg no-underline">
+          <a href="/products/al-khawlani" class="btn btn-gold btn-lg no-underline font-black">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
             </svg>
-            Shop Al-Khawlani
+            Shop Now — $34.99
           </a>
           <a href="/#story" class="btn btn-outline btn-lg no-underline">Our Story</a>
         </div>
 
-        <!-- Stats -->
-        <div class="flex flex-wrap gap-10 pt-2">
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-4 pt-2 max-w-sm">
           {[
             { num: '5,000+', label: 'Happy Customers' },
             { num: '4', label: 'Yemen Regions' },
-            { num: '100%', label: 'Natural & Organic' },
+            { num: '100%', label: 'Natural' },
           ].map((stat) => (
-            <div>
-              <div class="text-2xl sm:text-3xl font-black text-gold">{stat.num}</div>
-              <div class="text-xs text-mocha-200 font-medium mt-0.5">{stat.label}</div>
+            <div class="text-center p-3 rounded-xl" style="background: rgba(22,11,2,0.7); border: 1px solid rgba(200,150,62,0.1);">
+              <div class="text-xl sm:text-2xl font-black text-gold leading-none">{stat.num}</div>
+              <div class="text-[10px] text-mocha-300 font-medium mt-1 leading-tight">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Visual -->
-      <div class="flex items-center justify-center lg:justify-end">
-        <div class="relative float-anim">
+      <!-- Right: Visual -->
+      <div class="order-1 lg:order-2 flex items-center justify-center lg:justify-end">
+        <div class="relative">
+          <!-- Outer glow ring -->
           <div class="absolute inset-0 rounded-full blur-2xl opacity-40"
-            style="background: radial-gradient(circle, #c8963e 0%, transparent 70%); transform: scale(1.3);"></div>
+            style="background: radial-gradient(circle, #c8963e 0%, transparent 65%); transform: scale(1.4);"></div>
 
-          <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl"
-            style="background: linear-gradient(145deg, #2c1503 0%, #7a3d0a 40%, #c8963e 80%, #e8c47a 100%); border: 2px solid rgba(232,196,122,0.3);">
-            <div class="absolute inset-4 rounded-full"
-              style="background: linear-gradient(145deg, #160b02 0%, #3d1e05 60%, #7a3d0a 100%); border: 1px solid rgba(200,150,62,0.2);"></div>
+          <!-- Main circle -->
+          <div class="relative float-anim w-72 h-72 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-full overflow-hidden shadow-2xl"
+            style="background: linear-gradient(145deg, #2c1503 0%, #7a3d0a 35%, #c8963e 70%, #e8c47a 100%); border: 2px solid rgba(232,196,122,0.35);">
+
+            <!-- Inner dark circle -->
+            <div class="absolute inset-5 rounded-full"
+              style="background: linear-gradient(145deg, #0a0500 0%, #2c1503 50%, #5c2e08 100%); border: 1px solid rgba(200,150,62,0.2);"></div>
+
+            <!-- Steam lines -->
+            <div class="absolute top-8 left-1/2 -translate-x-1/2 flex gap-4">
+              {['-2s', '0s', '-1s'].map((delay) => (
+                <div class="w-0.5 h-8 rounded-full" style={`background: linear-gradient(to top, rgba(232,196,122,0.5), transparent); animation: steamRise 2s ease-in-out infinite; animation-delay: ${delay};`}></div>
+              ))}
+            </div>
 
             <!-- Coffee cup SVG -->
             <div class="absolute inset-0 flex items-center justify-center">
-              <svg viewBox="0 0 120 120" width="145" height="145" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M45 35 Q48 25 45 15 Q42 5 45 0" stroke="#e8c47a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
-                <path d="M60 38 Q63 28 60 18 Q57 8 60 3" stroke="#e8c47a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9"/>
-                <path d="M75 35 Q78 25 75 15 Q72 5 75 0" stroke="#e8c47a" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
-                <path d="M30 50 L35 95 Q35 100 40 100 L80 100 Q85 100 85 95 L90 50 Z" fill="#c8963e" opacity="0.9"/>
-                <rect x="26" y="46" width="68" height="8" rx="4" fill="#e8c47a"/>
-                <path d="M85 60 Q105 60 105 75 Q105 90 85 90" stroke="#e8c47a" stroke-width="5" stroke-linecap="round" fill="none"/>
-                <ellipse cx="60" cy="50" rx="33" ry="6" fill="#3d1e05" opacity="0.8"/>
-                <ellipse cx="58" cy="50" rx="20" ry="3.5" fill="#2c1503" opacity="0.6"/>
-                <path d="M50 50 Q60 44 70 50" stroke="#e8c47a" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
-                <circle cx="60" cy="50" r="4" fill="#c8963e" opacity="0.4"/>
-                <ellipse cx="60" cy="103" rx="40" ry="6" fill="#a05415" opacity="0.8"/>
-                <ellipse cx="60" cy="103" rx="35" ry="4" fill="#7a3d0a" opacity="0.6"/>
-                <ellipse cx="42" cy="112" rx="5" ry="3" fill="#5c2e08" transform="rotate(-20 42 112)"/>
-                <line x1="42" y1="109" x2="42" y2="115" stroke="#3d1e05" stroke-width="1" transform="rotate(-20 42 112)"/>
-                <ellipse cx="78" cy="112" rx="5" ry="3" fill="#5c2e08" transform="rotate(20 78 112)"/>
-                <line x1="78" y1="109" x2="78" y2="115" stroke="#3d1e05" stroke-width="1" transform="rotate(20 78 112)"/>
+              <svg viewBox="0 0 140 140" width="165" height="165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Steam -->
+                <path d="M50 30 Q53 20 50 10 Q47 0 50 -5" stroke="#e8c47a" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+                <path d="M70 33 Q73 22 70 11 Q67 1 70 -4" stroke="#e8c47a" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85"/>
+                <path d="M90 30 Q93 20 90 10 Q87 0 90 -5" stroke="#e8c47a" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+
+                <!-- Cup body -->
+                <path d="M35 58 L40 110 Q40 117 47 117 L93 117 Q100 117 100 110 L105 58 Z" fill="#c8963e" opacity="0.95"/>
+                <rect x="31" y="53" width="78" height="9" rx="4.5" fill="#e8c47a"/>
+
+                <!-- Handle -->
+                <path d="M100 70 Q122 70 122 87 Q122 104 100 104" stroke="#e8c47a" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+                <!-- Coffee surface -->
+                <ellipse cx="70" cy="57.5" rx="38" ry="7" fill="#2c1503" opacity="0.9"/>
+                <ellipse cx="68" cy="57.5" rx="24" ry="4" fill="#160b02" opacity="0.7"/>
+
+                <!-- Latte art swirl -->
+                <path d="M58 57 Q70 51 82 57" stroke="#c8963e" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.5"/>
+                <circle cx="70" cy="57.5" r="5" fill="#c8963e" opacity="0.35"/>
+
+                <!-- Saucer -->
+                <ellipse cx="70" cy="120" rx="46" ry="7" fill="#a05415" opacity="0.85"/>
+                <ellipse cx="70" cy="120" rx="40" ry="5" fill="#7a3d0a" opacity="0.7"/>
+
+                <!-- Saucer legs / reflection -->
+                <ellipse cx="50" cy="129" rx="6" ry="4" fill="#5c2e08" transform="rotate(-18 50 129)"/>
+                <ellipse cx="90" cy="129" rx="6" ry="4" fill="#5c2e08" transform="rotate(18 90 129)"/>
               </svg>
             </div>
 
+            <!-- Sparkle dots -->
             {[
-              { x: '15%', y: '20%', size: '8px', delay: '0s' },
-              { x: '80%', y: '15%', size: '6px', delay: '0.5s' },
-              { x: '85%', y: '70%', size: '10px', delay: '1s' },
-              { x: '10%', y: '75%', size: '7px', delay: '1.5s' },
+              { x: '12%', y: '18%', size: '8px', delay: '0s' },
+              { x: '82%', y: '12%', size: '6px', delay: '0.6s' },
+              { x: '88%', y: '72%', size: '10px', delay: '1.2s' },
+              { x: '8%', y: '78%', size: '7px', delay: '0.9s' },
+              { x: '50%', y: '8%', size: '5px', delay: '1.8s' },
             ].map((s) => (
               <div class="absolute rounded-full bg-gold animate-pulse"
-                style={`left: ${s.x}; top: ${s.y}; width: ${s.size}; height: ${s.size}; animation-delay: ${s.delay}; opacity: 0.6;`} />
+                style={`left: ${s.x}; top: ${s.y}; width: ${s.size}; height: ${s.size}; animation-delay: ${s.delay}; opacity: 0.55;`} />
             ))}
           </div>
 
-          <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap px-5 py-2 rounded-full font-bold text-xs shadow-xl"
-            style="background: linear-gradient(135deg, #c8963e, #e8c47a); color: #0a0500;">
-            ☕ Roasted Fresh Daily
+          <!-- "Roasted fresh daily" badge -->
+          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-5 py-2.5 rounded-full font-black text-xs shadow-2xl"
+            style="background: linear-gradient(135deg, #c8963e, #e8c47a); color: #0a0500; z-index: 10;">
+            ☕ Roasted Fresh Every Day
+          </div>
+
+          <!-- Origin badge -->
+          <div class="absolute -top-4 -left-4 sm:-left-8 px-4 py-3 rounded-2xl shadow-2xl"
+            style="background: rgba(10,5,0,0.9); border: 1px solid rgba(200,150,62,0.3); backdrop-filter: blur(12px);">
+            <p class="text-gold font-black text-lg leading-none">Yemen</p>
+            <p class="text-mocha-300 text-[10px] font-medium mt-0.5">Origin Certified</p>
+          </div>
+
+          <!-- Weight badge -->
+          <div class="absolute -top-4 -right-4 sm:-right-8 px-4 py-3 rounded-2xl shadow-2xl"
+            style="background: rgba(10,5,0,0.9); border: 1px solid rgba(200,150,62,0.3); backdrop-filter: blur(12px);">
+            <p class="text-gold font-black text-lg leading-none">250g</p>
+            <p class="text-mocha-300 text-[10px] font-medium mt-0.5">Hermetic Seal</p>
           </div>
         </div>
       </div>
@@ -119,7 +171,14 @@
 
   <!-- Scroll indicator -->
   <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-    <span class="text-xs text-mocha-200 font-medium tracking-widest uppercase">Scroll</span>
-    <div class="w-px h-8 bg-gradient-to-b from-gold to-transparent"></div>
+    <span class="text-[10px] text-mocha-200 font-bold tracking-widest uppercase">Scroll</span>
+    <div class="w-px h-10 bg-gradient-to-b from-gold to-transparent"></div>
   </div>
 </section>
+
+<style>
+  @keyframes steamRise {
+    0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.6; }
+    50% { transform: translateY(-12px) scaleX(1.3); opacity: 0; }
+  }
+</style>

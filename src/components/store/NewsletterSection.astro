@@ -1,0 +1,64 @@
+---
+---
+
+<section class="py-20 relative overflow-hidden">
+  <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(44,21,3,0.5) 0%, rgba(10,5,0,0.8) 50%, rgba(22,11,2,0.5) 100%);"></div>
+  <div class="absolute inset-0 opacity-15" style="background-image: url('/images/noise.png');"></div>
+
+  <!-- Decorative orbs -->
+  <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-3xl opacity-20"
+    style="background: radial-gradient(circle, #c8963e 0%, transparent 70%);"></div>
+  <div class="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full blur-3xl opacity-15"
+    style="background: radial-gradient(circle, #e8c47a 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-bold mb-6"
+      style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
+      ✦ Join the Mocha Community
+    </div>
+
+    <h2 class="font-black text-cream mb-4" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
+      Get Exclusive Deals &<br/>
+      <span class="text-gradient">Coffee Secrets</span>
+    </h2>
+
+    <p class="text-mocha-100 mb-8 leading-relaxed" style="font-weight: 300;">
+      Subscribe and get <strong class="text-gold font-bold">15% off your first order</strong>, brewing guides, and early access to new origins before anyone else.
+    </p>
+
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleSubscribe(event)">
+      <input
+        type="email"
+        placeholder="your@email.com"
+        required
+        class="flex-1 px-5 py-3.5 rounded-xl text-sm font-medium outline-none transition-all"
+        style="background: rgba(44,21,3,0.8); border: 1px solid rgba(200,150,62,0.3); color: #f5e0b0;"
+        onfocus="this.style.borderColor='rgba(200,150,62,0.7)'"
+        onblur="this.style.borderColor='rgba(200,150,62,0.3)'"
+      />
+      <button type="submit"
+        class="btn btn-gold no-underline whitespace-nowrap px-6 py-3.5 rounded-xl font-black text-sm">
+        Subscribe Free
+      </button>
+    </form>
+
+    <p class="text-mocha-400 text-xs mt-4">
+      No spam. Unsubscribe anytime. Your code arrives instantly.
+    </p>
+  </div>
+</section>
+
+<script>
+function handleSubscribe(e: Event) {
+  e.preventDefault();
+  const form = e.target as HTMLFormElement;
+  const input = form.querySelector('input[type="email"]') as HTMLInputElement;
+  const btn = form.querySelector('button') as HTMLButtonElement;
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = '#22c55e';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+  input.disabled = true;
+  input.value = '';
+}
+</script>

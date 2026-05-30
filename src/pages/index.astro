@@ -1,35 +1,34 @@
 ---
 import StoreLayout from '../layouts/StoreLayout.astro';
 import Hero from '../components/store/Hero.astro';
+import TrustBar from '../components/store/TrustBar.astro';
 import ProductCard from '../components/store/ProductCard.astro';
+import FeaturedSpotlight from '../components/store/FeaturedSpotlight.astro';
 import StorySection from '../components/store/StorySection.astro';
 import OriginsSection from '../components/store/OriginsSection.astro';
 import TestimonialsSection from '../components/store/TestimonialsSection.astro';
+import NewsletterSection from '../components/store/NewsletterSection.astro';
 import { getFeaturedProducts } from '../data/products';
 
 const featured = getFeaturedProducts();
 ---
 
 <StoreLayout>
+
+  <!-- Hero -->
   <Hero />
 
-  <div class="gold-divider my-2"></div>
+  <!-- Trust bar -->
+  <TrustBar />
 
-  <!-- Featured Products -->
+  <!-- Featured Products Grid -->
   <section class="py-20 relative">
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(44,21,3,0.3) 0%, transparent 60%);"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at 50% 0%, rgba(44,21,3,0.25) 0%, transparent 60%);"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="flex items-center justify-between mb-12">
-        <a href="/products" class="btn btn-outline btn-sm no-underline flex items-center gap-2">
-          View All
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
-        <div class="text-right">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-bold mb-2"
+      <div class="flex items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-bold mb-3"
             style="border-color: rgba(200,150,62,0.3); color: #e8c47a; background: rgba(200,150,62,0.05);">
             ✦ Our Collection
           </div>
@@ -37,6 +36,13 @@ const featured = getFeaturedProducts();
             Shop the Collection
           </h2>
         </div>
+        <a href="/products" class="btn btn-outline btn-sm no-underline flex items-center gap-2 flex-shrink-0">
+          View All
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -47,9 +53,15 @@ const featured = getFeaturedProducts();
     </div>
   </section>
 
+  <div class="gold-divider mx-4 sm:mx-8"></div>
+
+  <!-- Featured product spotlight -->
+  <FeaturedSpotlight />
+
+  <!-- Story -->
   <StorySection />
 
-  <!-- Process -->
+  <!-- From Tree to Cup process -->
   <section class="py-20 relative overflow-hidden">
     <div class="gold-divider mb-20"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,20 +73,24 @@ const featured = getFeaturedProducts();
         <h2 class="font-black text-cream" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem);">
           From Tree to Cup
         </h2>
+        <p class="text-mocha-100 max-w-xl mx-auto" style="font-weight: 300;">
+          Every step is done by hand, with care and centuries of tradition.
+        </p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { step: '01', title: 'Natural Farming', desc: 'Our farmers use only traditional, chemical-free methods passed down through generations.', icon: '🌱' },
-          { step: '02', title: 'Hand Picked', desc: 'Every single cherry is hand-selected at peak ripeness for maximum flavor.', icon: '✋' },
-          { step: '03', title: 'Small-Batch Roasted', desc: 'Our expert roasters roast daily in small batches, monitoring every stage.', icon: '🔥' },
-          { step: '04', title: 'Shipped Fresh', desc: 'Your coffee ships within 24h of roasting, hermetically sealed for peak freshness.', icon: '📦' },
-        ].map((item) => (
-          <div class="p-6 rounded-2xl relative group" style="background: rgba(22,11,2,0.6); border: 1px solid rgba(200,150,62,0.1);">
-            <div class="absolute top-4 right-4 font-black text-4xl opacity-10 group-hover:opacity-20 transition-opacity"
+          { step: '01', title: 'Natural Farming', desc: 'Our farmers use only traditional, chemical-free methods passed down through generations on ancient Yemeni highlands.', icon: '🌱' },
+          { step: '02', title: 'Hand Picked', desc: 'Every single cherry is carefully hand-selected at peak ripeness for maximum flavor potential.', icon: '✋' },
+          { step: '03', title: 'Small-Batch Roasted', desc: 'Our expert roasters roast in small batches every morning, monitoring every stage by sight and scent.', icon: '🔥' },
+          { step: '04', title: 'Shipped Fresh', desc: 'Your coffee ships within 24 hours of roasting, hermetically sealed to lock in peak freshness.', icon: '📦' },
+        ].map((item, i) => (
+          <div class="relative group p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1"
+            style="background: rgba(22,11,2,0.6); border: 1px solid rgba(200,150,62,0.1);">
+            <div class="absolute top-4 right-4 font-black text-5xl opacity-[0.07] group-hover:opacity-[0.12] transition-opacity"
               style="color: #c8963e;">{item.step}</div>
             <div class="text-3xl mb-4">{item.icon}</div>
-            <h3 class="font-black text-cream text-base mb-2">{item.title}</h3>
+            <h3 class="font-black text-cream text-sm mb-2">{item.title}</h3>
             <p class="text-mocha-200 text-sm leading-relaxed" style="font-weight: 300;">{item.desc}</p>
           </div>
         ))}
@@ -82,30 +98,50 @@ const featured = getFeaturedProducts();
     </div>
   </section>
 
+  <!-- Origins -->
   <OriginsSection />
+
+  <!-- Testimonials -->
   <TestimonialsSection />
 
+  <!-- Newsletter -->
+  <div class="gold-divider mx-4 sm:mx-8 mb-4"></div>
+  <NewsletterSection />
+
   <!-- CTA Banner -->
-  <section class="py-16 mx-4 sm:mx-6 lg:mx-8 mb-8 rounded-3xl relative overflow-hidden"
+  <section class="py-16 mx-4 sm:mx-6 lg:mx-8 mb-10 rounded-3xl relative overflow-hidden"
     style="background: linear-gradient(135deg, #2c1503 0%, #7a3d0a 50%, #c8963e 100%);">
     <div class="absolute inset-0 opacity-20" style="background-image: url('/images/noise.png');"></div>
+
+    <!-- Decorative circles -->
+    <div class="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-20" style="background: rgba(255,255,255,0.15);"></div>
+    <div class="absolute -bottom-8 -left-8 w-32 h-32 rounded-full opacity-15" style="background: rgba(255,255,255,0.1);"></div>
+
     <div class="relative z-10 text-center space-y-6 px-6">
-      <h2 class="font-black text-mocha-950" style="font-size: clamp(1.8rem, 4vw, 2.8rem);">
-        Ready to Experience<br />Real Yemeni Coffee?
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-2"
+        style="background: rgba(10,5,0,0.2); color: #0a0500; border: 1px solid rgba(10,5,0,0.2);">
+        ✦ Limited Stock Available
+      </div>
+      <h2 class="font-black text-mocha-950" style="font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.15;">
+        Ready to Experience<br />
+        Real Yemeni Coffee?
       </h2>
       <p class="text-mocha-800 max-w-lg mx-auto" style="font-weight: 300;">
         Order today and get free shipping on your first order. 100% satisfaction guarantee or your money back.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="/products/al-khawlani" class="btn no-underline font-black text-base px-8 py-3.5 rounded-xl transition-all hover:-translate-y-1"
+        <a href="/products/al-khawlani"
+          class="btn no-underline font-black text-base px-8 py-3.5 rounded-xl transition-all hover:-translate-y-1 hover:shadow-2xl"
           style="background: #0a0500; color: #e8c47a; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
-          Shop Al-Khawlani
+          Shop Al-Khawlani — $34.99
         </a>
-        <a href="/#story" class="btn no-underline font-semibold text-sm px-6 py-3.5 rounded-xl transition-all"
-          style="background: rgba(10,5,0,0.2); color: #0a0500; border: 2px solid rgba(10,5,0,0.3);">
+        <a href="/#story"
+          class="btn no-underline font-semibold text-sm px-6 py-3.5 rounded-xl transition-all"
+          style="background: rgba(10,5,0,0.15); color: #0a0500; border: 2px solid rgba(10,5,0,0.25);">
           Learn More
         </a>
       </div>
     </div>
   </section>
+
 </StoreLayout>
